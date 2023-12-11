@@ -1,4 +1,4 @@
-name: 'RAVN Fastlane for iOS'
+name: 'RAVN Fastlane Action for iOS'
 branding:
   icon: check-circle
   color: black
