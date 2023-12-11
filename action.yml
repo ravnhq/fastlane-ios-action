@@ -1,4 +1,7 @@
 name: 'Fastlane iOS'
+branding:
+  icon: check-circle
+  color: white
 description: 'Execute fastlane pipeline for iOS'
 inputs:
   build-lane:
