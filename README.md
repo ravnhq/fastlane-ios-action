@@ -35,7 +35,7 @@ jobs:
           commit-increment: false 
           publish-build: true
           app-identifier: com.domain.application
-          team-id: '123456'
+          team-id: ${{ secrets.APPLE_TEAM_ID }}
           scheme: 'app'
           configuration: 'Release'
           xcodeproj: './app.xcodeproj'
