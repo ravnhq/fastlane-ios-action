@@ -13,6 +13,7 @@ fi
 [[ -z "${FL_ITC_TEAM_ID}" ]] && unset FL_ITC_TEAM_ID
 [[ -z "${FL_IOS_CONFIGURATION}" ]] && unset FL_IOS_CONFIGURATION
 [[ -z "${FL_XCODE_WORKSPACE}" ]] && unset FL_XCODE_WORKSPACE
+[[ -z "${FL_IOS_PODFILE}" ]] && unset FL_IOS_PODFILE
 [[ -z "${FL_APPLE_ENTERPRISE}" ]] && unset FL_APPLE_ENTERPRISE
 
 # Execute fastlane using wrapper

@@ -44,6 +44,9 @@ inputs:
   xcworkspace:
     description: 'Path to main XCode workspace'
     required: false
+  podfile:
+    description: 'Path to the Podfile (if any) or parent dir, if not defined will try to look for one based on the path of the Xcode project'
+    required: false
   apple-key-id:
     description: 'Apple App Store Connect Key ID'
     required: true
@@ -91,6 +94,7 @@ runs:
         FL_IOS_CONFIGURATION: ${{ inputs.configuration }}
         FL_XCODE_PROJ: ${{ inputs.xcodeproj }}
         FL_XCODE_WORKSPACE: ${{ inputs.xcworkspace }}
+        FL_IOS_PODFILE: ${{ inputs.podfile }}
         FL_APPLE_KEY_ID: ${{ inputs.apple-key-id }}
         FL_APPLE_ISSUER_ID: ${{ inputs.apple-issues-id }}
         FL_APPLE_KEY_FILE: ${{ steps.create-apple-key-file.outputs.apple-key-file }}
