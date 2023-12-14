@@ -1,6 +1,7 @@
 name: 'RAVN Fastlane Action for iOS'
 branding:
   icon: check-circle
+  # noinspection YAMLSchemaValidation
   color: black
 description: 'Execute fastlane pipeline for iOS'
 inputs:
@@ -22,6 +23,10 @@ inputs:
     description: 'Whether or not to publish build artifacts to the App Store (or TestFlight)'
     required: false
     default: 'true'
+  upload-artifacts:
+    description: 'Whether or not to upload output artifacts to GitHub Actions'
+    required: false
+    default: 'false'
   app-identifier:
     description: 'App Store application bundle identifier'
     required: true
@@ -99,3 +104,9 @@ runs:
         FL_APPLE_ISSUER_ID: ${{ inputs.apple-issues-id }}
         FL_APPLE_KEY_FILE: ${{ steps.create-apple-key-file.outputs.apple-key-file }}
         FL_APPLE_ENTERPRISE: ${{ inputs.enterprise }}
+    - id: upload-artifacts
+      if: ${{ inputs.upload-artifacts == 'true' }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifacts
+        path: artifacts/

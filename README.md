@@ -77,6 +77,7 @@ cat path/to/your/file.json | base64 | pbcopy
 | `run-id-as-build`  | Whether or not to use GitHub build id as build number                                                                      |          | `true`    |
 | `commit-increment` | Whether or not to commit and push version increment                                                                        |          | `false`   |
 | `publish-build`    | Whether or not to publish build artifacts to the App Store (or TestFlight)                                                 |          | `true`    |
+| `upload-artifacts` | Whether or not to upload output artifacts to GitHub Actions                                                                |          | `true`    |
 | `app-identifier`   | App Store application bundle identifier                                                                                    |    ✓     |           |
 | `team-id`          | App Store Connect Team ID (if any)                                                                                         |          |           |
 | `itc-team-id`      | iTunes Connect Team ID (if any)                                                                                            |          |           |
