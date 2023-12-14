@@ -18,7 +18,7 @@ if ! [[ "${version}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 fi
 
 major_version=$(echo "${version:1}" | cut -d. -f1)
-minor_version=$(echo "${version:1}" | cut -d. -f1)
+minor_version=$(echo "${version:1}" | cut -d. -f2)
 
 git tag "${version}" # specific version tag
 git tag -f "v${major_version}" # major version tag
