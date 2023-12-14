@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-# Set build number to GitHub run id
-if [[ "${RUN_ID_AS_BUILD}" =~ ^(yes|1|true)$ ]]; then
-  echo "FL_BUILD_NUMBER=${RUN_ID}" >> "${GITHUB_ENV}"
-fi
+case "${BUILD_NUMBER_STRATEGY}" in
+  github)
+    export FL_BUILD_NUMBER="${RUN_NUMBER}"
+    ;;
+  store)
+    export FL_BUILD_NUMBER='store'
+    ;;
+  *)
+    export FL_BUILD_NUMBER=''
+esac
 
 # Unset optional variables that are empty
 [[ -z "${FL_ENFORCED_BRANCH}" ]] && unset FL_ENFORCED_BRANCH

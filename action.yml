@@ -11,18 +11,12 @@ inputs:
   enforced-branch:
     description: 'Branch to enforce, recommended (supports regex)'
     required: false
-  run-id-as-build:
-    description: 'Whether or not to use GitHub build id as build number'
+  build-number:
+    description: |
+      Which build number strategy to use: `store` to increment previous published build, `github` to use run number
+      as build number (default), or empty to use local auto-increment.
     required: false
-    default: 'true'
-  commit-increment:
-    description: 'Whether or not to commit and push version increment'
-    required: false
-    default: 'false'
-  publish-build:
-    description: 'Whether or not to publish build artifacts to the App Store (or TestFlight)'
-    required: false
-    default: 'true'
+    default: 'github'
   upload-artifacts:
     description: 'Whether or not to upload output artifacts to GitHub Actions'
     required: false
@@ -86,9 +80,9 @@ runs:
       run: ${{ github.action_path }}/fastlane.sh
       env:
         BUILD_LANE: ${{ inputs.build-lane }}
-        RUN_ID_AS_BUILD: ${{ inputs.run-id-as-build }}
-        RUN_ID: ${{ github.run_id }}
         MATCH_PASSWORD: ${{ inputs.match-password }}
+        RUN_NUMBER: ${{ github.run_number }}
+        BUILD_NUMBER_STRATEGY: ${{ inputs.build-number }}
         FL_ENFORCED_BRANCH: ${{ inputs.enforced-branch }}
         FL_COMMIT_INCREMENT: ${{ inputs.commit-increment }}
         FL_PACKAGE_NAME: ${{ inputs.package-name }}
@@ -101,7 +95,7 @@ runs:
         FL_XCODE_WORKSPACE: ${{ inputs.xcworkspace }}
         FL_IOS_PODFILE: ${{ inputs.podfile }}
         FL_APPLE_KEY_ID: ${{ inputs.apple-key-id }}
-        FL_APPLE_ISSUER_ID: ${{ inputs.apple-issues-id }}
+        FL_APPLE_ISSUER_ID: ${{ inputs.apple-issuer-id }}
         FL_APPLE_KEY_FILE: ${{ steps.create-apple-key-file.outputs.apple-key-file }}
         FL_APPLE_ENTERPRISE: ${{ inputs.enterprise }}
     - id: upload-artifacts
