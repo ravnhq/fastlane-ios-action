@@ -80,9 +80,11 @@ runs:
     - id: create-apple-key-file
       if: ${{ inputs.apple-key-base64 != '' }}
       shell: bash
+      env:
+        TMPDIR: ${{ runner.temp }}
       run: |
-        echo "${{ inputs.apple-key-base64 }}" | base64 -d > __apple_key.p8
-        echo "apple-key-file=$(pwd)/__apple_key.p8" >> $GITHUB_OUTPUT
+        echo "${{ inputs.apple-key-base64 }}" | base64 -d > "${TMPDIR}/__apple_key.p8"
+        echo "apple-key-file=${TMPDIR}/__apple_key.p8" >> $GITHUB_OUTPUT
     - id: run-fastlane
       shell: bash
       run: ${{ github.action_path }}/fastlane.sh
