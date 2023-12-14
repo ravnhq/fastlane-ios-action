@@ -17,6 +17,14 @@ inputs:
       as build number (default), or empty to use local auto-increment.
     required: false
     default: 'github'
+  commit-increment:
+    description: 'Whether or not to commit and push version increment'
+    required: false
+    default: 'false'
+  publish-build:
+    description: 'Whether or not to publish build artifacts to the Play Store'
+    required: false
+    default: 'true'
   upload-artifacts:
     description: 'Whether or not to upload output artifacts to GitHub Actions'
     required: false
@@ -85,6 +93,7 @@ runs:
         BUILD_NUMBER_STRATEGY: ${{ inputs.build-number }}
         FL_ENFORCED_BRANCH: ${{ inputs.enforced-branch }}
         FL_COMMIT_INCREMENT: ${{ inputs.commit-increment }}
+        FL_PUBLISH_BUILD: ${{ inputs.publish-build }}
         FL_PACKAGE_NAME: ${{ inputs.package-name }}
         FL_APP_IDENTIFIER: ${{ inputs.app-identifier }}
         FL_TEAM_ID: ${{ inputs.team-id }}
